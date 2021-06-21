@@ -1,0 +1,28 @@
+﻿@page "/apidemo"
+@inject HttpClient client
+<div class="container">
+    <h3>Page ApiDemo</h3>
+    <DrugList @bind-Drugs="drugs"
+              SelectedObjectChanged="ShowDetails"></DrugList>
+    <DrugDetails @bind-Drug="SelectedDrug"></DrugDetails>
+</div>
+
+@code {
+    public IEnumerable<ListViewModel> drugs { get; set; }
+
+    string apiBaseAddress = "https://localhost:44398/api/Drugs";
+
+    protected override async Task OnInitializedAsync()
+    {
+        drugs = await client.GetFromJsonAsync<IEnumerable<ListViewModel>>(apiBaseAddress);
+    }
+
+    [Parameter]
+    public DetailsViewModel SelectedDrug { get; set; }
+
+    private async Task ShowDetails(int id)
+    {
+        SelectedDrug = await client.GetFromJsonAsync<DetailsViewModel>(apiBaseAddress + $"/{id}");
+    }
+
+}

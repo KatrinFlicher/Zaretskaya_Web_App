@@ -1,0 +1,28 @@
+﻿@using Zaretskaya_Html_Intro.Blazor.Data
+
+@if (Drug != null)
+{
+    <img src="@imageSrc" class="img-thumbnail" width="150" />
+    <div>
+        <p>@Drug.Name - @Drug.Description</p>
+        <div class="badge badge-info">@Drug.Price руб</div>
+    </div>
+
+}
+
+
+@code {
+    [Parameter]
+    public DetailsViewModel Drug { get; set; }
+    [Parameter]
+    public EventCallback<DetailsViewModel> DrugChanged { get; set; }
+
+    string imageSrc
+    {
+        get
+        {
+            return $"https://localhost:44398/images/{Drug.Image}";
+        }
+    }
+
+}

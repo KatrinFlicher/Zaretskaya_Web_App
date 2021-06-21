@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Zaretskaya_Html_Intro</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+
+</head>
+<body>
+
+
+    <header>
+        <div class="container">
+            <!-- Navigation panel -->
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <!-- Site menu -->
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">WebLabs02 Zaretskaya</a>
+                <div class="navbar-nav">
+                    @await Component.InvokeAsync("Menu")
+                </div>
+                <!-- User info -->
+                <partial name="_UserPartial" />
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container" style="padding: 5% 0">
+        <!--        Содержимое страницы-->
+        @RenderBody()
+    </main>
+
+
+    <footer class="fixed-bottom">
+        <div class="container">
+            <div class="navbar navbar-dark navbar-expand-md bg-dark">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="http://www.facebook.com">
+                        <i class="fab fa-facebook-f fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.vk.com">
+                        <i class="fab fa-vk fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.twitter.com">
+                        <i class="fab fa-twitter fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+            <!--<span class="nav-color">Подвал страницы</span>-->
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
